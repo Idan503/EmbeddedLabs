@@ -60,8 +60,8 @@ DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 SOURCEFILES_QUOTED_IF_SPACED=lab1_main.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/lab1_main.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/lab1_main.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/lab1_main.o 
+POSSIBLE_DEPFILES=${OBJECTDIR}/lab1_main.o.d 
 
 # Object Files
 OBJECTFILES=${OBJECTDIR}/lab1_main.o
@@ -112,6 +112,7 @@ ${OBJECTDIR}/lab1_main.o: lab1_main.c  nbproject/Makefile-${CND_CONF}.mk
 	@${RM} ${OBJECTDIR}/lab1_main.o 
 	@${FIXDEPS} "${OBJECTDIR}/lab1_main.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/lab1_main.o.d" -o ${OBJECTDIR}/lab1_main.o lab1_main.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD) 
 	
+
 else
 ${OBJECTDIR}/lab1_main.o: lab1_main.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
