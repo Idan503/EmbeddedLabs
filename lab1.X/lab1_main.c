@@ -15,56 +15,69 @@ void init_sw();
 void increase(int i);
 void symmetric_shift(int by);
 void shift_left(int by);
+void busy_wait(int units);
 
 // delay types
-const int SMALL_DELAY = pow(2,18);
-const int BIG_DELAY = pow(2,20);
+const int SHORT_DELAY = pow(2,17);
+const int LONG_DELAY = pow(2,18);
 
 int sw1_place, sw2_left, sw2_right; // state parameters
-int last, delay;
-int j; //for delay loop
+int last; // for resetting LEDs when functionality changes
+int delay; // can be either SHORT or LONG
 
 void main()
 {
-    delay = SMALL_DELAY;
-    last = -1; //no last-functionality
+    last = -1; //detecting functionality change
     TRISA &= 0xff00; //Setting lights as output (8 lowest bits)
     init_sw();
+    TRISBbits.TRISB14 = 0; //Setting speaker as an output
     
     
     while(1)
     {
+        if(PORTBbits.RB9)
+        {
+            //sw07 - exit
+            break;
+        }
+        
         if(PORTBbits.RB11)
         {
-            //sw05 - stop (no function)
+            //sw05 - stop (no functionality)
             continue;
         }
+        
+        if(PORTBbits.RB10)
+        {
+            //sw06 - beep sound
+            beep();
+        }
+            
         
         if(PORTDbits.RD14)
         {
             //sw04 - smaller delay
-            delay = SMALL_DELAY;
+            delay = SHORT_DELAY;
         }
         else
-            delay = BIG_DELAY;
+            delay = LONG_DELAY;
         
+        busy_wait(delay); 
         
-        for(j=0;j<delay;j++); //delay
-
-           
-        
-             
+        //priority: sw02>sw01>sw00 by order of code
         if(PORTFbits.RF4)
         {
             //sw02 - symmetric 2-side shift
             if(last!=2){
                 //Setting to center - first iteration
-                sw2_left = 1;
-                sw2_right = 8;
-                PORTA = (sw2_left*16) + sw2_right;
+                // left and right are separating 8 LEDs to 2x4
+                sw2_left = 1; // left 4 LEDs value
+                sw2_right = 8; // right 4 LEDs value
+                PORTA = (sw2_left<<4) + sw2_right;
+                // Setting the LEDs with left shifted by 4
             }
             else{
-                if(!PORTDbits.RD15)
+                if(!PORTDbits.RD15) //sw3 => reverse
                 {
                     symmetric_shift(1);
                 }
@@ -118,8 +131,12 @@ void main()
         
         // No current functionality - setting LEDs to 'off'
         PORTA=0;
-
+        last = -1;
     }   
+    
+    // code gets to here when user enables sw07
+    PORTA=0;
+    exit(0);
 }
 
 void increase(int count)
@@ -182,6 +199,23 @@ void symmetric_shift(int by)
  
 }
 
+
+void beep(){
+    //switching on & off fast to make the beep
+    int i;
+    for(i=0;i<500;i++){
+        PORTBbits.RB14 = 1;
+        busy_wait(400);
+        PORTBbits.RB14 = 0;
+        busy_wait(400);
+    }
+}
+
+void busy_wait(int units)
+{
+    int i;
+    for(i=0;i<units;i++);
+}
 
 
 void init_sw()
