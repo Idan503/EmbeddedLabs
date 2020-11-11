@@ -14,6 +14,8 @@
 void init_sw();
 void increase(int i);
 void symmetric_shift(int by);
+void beep();
+void init_speaker();
 void shift_left(int by);
 void busy_wait(int units);
 
@@ -30,8 +32,7 @@ void main()
     last = -1; //detecting functionality change
     TRISA &= 0xff00; //Setting lights as output (8 lowest bits)
     init_sw();
-    TRISBbits.TRISB14 = 0; //Setting speaker as an output
-    
+    init_speaker();
     
     while(1)
     {
@@ -85,7 +86,6 @@ void main()
                     symmetric_shift(-1);
             }
             
-            
             last = 2;
             continue;
         }
@@ -134,7 +134,8 @@ void main()
         last = -1;
     }   
     
-    // code gets to here when user enables sw07
+    // end of main loop
+    // code gets to here when sw07 is enabled
     PORTA=0;
     exit(0);
 }
@@ -185,10 +186,10 @@ void symmetric_shift(int by)
     // Restarts when gets to edge
     
     if(sw2_right == 0)
-        sw2_right =8;
+        sw2_right = 8;
    
     if(sw2_left == 0)
-        sw2_left =8;
+        sw2_left = 8;
 
     //if(counter == 16) -> counter= 1;
     sw2_left = sw2_left % 15;
@@ -201,7 +202,7 @@ void symmetric_shift(int by)
 
 
 void beep(){
-    //switching on & off fast to make the beep
+    //switching sound on & off fast to make the beep
     int i;
     for(i=0;i<500;i++){
         PORTBbits.RB14 = 1;
@@ -217,6 +218,11 @@ void busy_wait(int units)
     for(i=0;i<units;i++);
 }
 
+void init_speaker()
+{
+    TRISBbits.TRISB14 = 0; //Setting speaker as an output
+    ANSELBbits.ANSB14 = 0; // prevent analog (this is a digital output : 0/1)
+}
 
 void init_sw()
 {
