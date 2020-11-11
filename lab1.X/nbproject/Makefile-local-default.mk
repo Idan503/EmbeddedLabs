@@ -15,23 +15,23 @@
 # $ makeMP_CC="/opt/microchip/mplabc30/v3.30c/bin/pic30-gcc" ...  
 #
 SHELL=cmd.exe
-PATH_TO_IDE_BIN=D:/Program Files (x86)/Microchip/mplab_platform/platform/../mplab_ide/modules/../../bin/
+PATH_TO_IDE_BIN=D:/Program Files/Microchip_LAB/mplab_platform/platform/../mplab_ide/modules/../../bin/
 # Adding MPLAB X bin directory to path.
-PATH:=D:/Program Files (x86)/Microchip/mplab_platform/platform/../mplab_ide/modules/../../bin/:$(PATH)
+PATH:=D:/Program Files/Microchip_LAB/mplab_platform/platform/../mplab_ide/modules/../../bin/:$(PATH)
 # Path to java used to run MPLAB X when this makefile was created
-MP_JAVA_PATH="D:\Program Files (x86)\Microchip\sys\java\jre1.8.0_181/bin/"
+MP_JAVA_PATH="D:\Program Files\Microchip_LAB\sys\java\jre1.8.0_181/bin/"
 OS_CURRENT="$(shell uname -s)"
-MP_CC="D:\Program Files (x86)\Microchip Compiler\bin\xc32-gcc.exe"
-MP_CPPC="D:\Program Files (x86)\Microchip Compiler\bin\xc32-g++.exe"
+MP_CC="D:\Program Files\Microchip\bin\xc32-gcc.exe"
+MP_CPPC="D:\Program Files\Microchip\bin\xc32-g++.exe"
 # MP_BC is not defined
-MP_AS="D:\Program Files (x86)\Microchip Compiler\bin\xc32-as.exe"
-MP_LD="D:\Program Files (x86)\Microchip Compiler\bin\xc32-ld.exe"
-MP_AR="D:\Program Files (x86)\Microchip Compiler\bin\xc32-ar.exe"
-DEP_GEN=${MP_JAVA_PATH}java -jar "D:/Program Files (x86)/Microchip/mplab_platform/platform/../mplab_ide/modules/../../bin/extractobjectdependencies.jar"
-MP_CC_DIR="D:\Program Files (x86)\Microchip Compiler\bin"
-MP_CPPC_DIR="D:\Program Files (x86)\Microchip Compiler\bin"
+MP_AS="D:\Program Files\Microchip\bin\xc32-as.exe"
+MP_LD="D:\Program Files\Microchip\bin\xc32-ld.exe"
+MP_AR="D:\Program Files\Microchip\bin\xc32-ar.exe"
+DEP_GEN=${MP_JAVA_PATH}java -jar "D:/Program Files/Microchip_LAB/mplab_platform/platform/../mplab_ide/modules/../../bin/extractobjectdependencies.jar"
+MP_CC_DIR="D:\Program Files\Microchip\bin"
+MP_CPPC_DIR="D:\Program Files\Microchip\bin"
 # MP_BC_DIR is not defined
-MP_AS_DIR="D:\Program Files (x86)\Microchip Compiler\bin"
-MP_LD_DIR="D:\Program Files (x86)\Microchip Compiler\bin"
-MP_AR_DIR="D:\Program Files (x86)\Microchip Compiler\bin"
+MP_AS_DIR="D:\Program Files\Microchip\bin"
+MP_LD_DIR="D:\Program Files\Microchip\bin"
+MP_AR_DIR="D:\Program Files\Microchip\bin"
 # MP_BC_DIR is not defined
