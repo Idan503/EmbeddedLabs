@@ -39,15 +39,11 @@ void main (void)
 {
     int j,i;
     char control[]={0x38,0x38,0x38,0xe,0x6,0x1};
-    
-
   
     initLCD();
 
     sendControlLCD(control,6);
-    
     setLCD("Initializing:     ", "     Start          ");
-
 
     last = -1; //detecting functionality change
     TRISA &= 0xff00; //Setting lights as output (8 lowest bits)
@@ -56,7 +52,6 @@ void main (void)
     
     while(1)
     {
-        
         initLCD();
         
         if(PORTBbits.RB9)
@@ -118,16 +113,13 @@ void main (void)
                 }
                 else
                 {
-                    
                     if(delay==SHORT_DELAY)
                     {
-                        setLCD("Mode 2:            ", "Swing Reverse Fast     ");
+                        setLCD("Mode 2:            ", "Swing Rev. Fast     ");
                     }
                     else
-                        setLCD("Mode 2:            ", "Swing Reverse Slow     ");
-                    
+                        setLCD("Mode 2:            ", "Swing Rev. Slow     ");
                     symmetric_shift(-1);
-                    
                 }
             }
             
@@ -213,6 +205,8 @@ void main (void)
         }
         
         // No current functionality - setting LEDs to 'off'
+        
+        setLCD("Mode: None       ", "Select mode        ");
         PORTA=0;
         last = -1;
     }   
@@ -223,7 +217,7 @@ void main (void)
     exit(0);
     
     
-    
+  
 }
 
 void increase(int count)
@@ -351,16 +345,13 @@ void busyLCD(void)
         PORTBbits.RB15=RS;
         TRISE=STATUS_TRISE;
         
-        
-        PORTDbits.RD5=0;//back to write mode
-
     }
 
 
 void initLCD()
 {
 
-    
+
     TRISBbits.TRISB15 = 0; // RB15 (DISP_RS) set as an output
     ANSELBbits.ANSB15 = 0; // disable analog functionality on RB15 (DISP_RS)
     TRISDbits.TRISD5 = 0; // RD5 (DISP_RW) set as an output
@@ -412,6 +403,8 @@ void setLCD(char top_line[], char bottom_line[])
 
 void sendControlLCD(char control[], int length)
 {
+    int old_RD15 = PORTBbits.RB15;
+    int old_RD5 = PORTDbits.RD5;
     int i;
     PORTBbits.RB15=0;//rs=0
     PORTDbits.RD5=0;//w=0
@@ -422,4 +415,7 @@ void sendControlLCD(char control[], int length)
         PORTDbits.RD4=0;
         busyLCD();
     }
+    
+    PORTBbits.RB15=old_RD15;
+    PORTDbits.RD5= old_RD5;
 }
