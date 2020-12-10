@@ -57,17 +57,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=main_3.c
+SOURCEFILES_QUOTED_IF_SPACED=main_3c.c main_3a.c main_3b.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main_3.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/main_3.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main_3c.o ${OBJECTDIR}/main_3a.o ${OBJECTDIR}/main_3b.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/main_3c.o.d ${OBJECTDIR}/main_3a.o.d ${OBJECTDIR}/main_3b.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/main_3.o
+OBJECTFILES=${OBJECTDIR}/main_3c.o ${OBJECTDIR}/main_3a.o ${OBJECTDIR}/main_3b.o
 
 # Source Files
-SOURCEFILES=main_3.c
+SOURCEFILES=main_3c.c main_3a.c main_3b.c
 
 
 CFLAGS=
@@ -106,18 +106,42 @@ endif
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: compile
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
-${OBJECTDIR}/main_3.o: main_3.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/main_3c.o: main_3c.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/main_3.o.d 
-	@${RM} ${OBJECTDIR}/main_3.o 
-	@${FIXDEPS} "${OBJECTDIR}/main_3.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/main_3.o.d" -o ${OBJECTDIR}/main_3.o main_3.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD) 
+	@${RM} ${OBJECTDIR}/main_3c.o.d 
+	@${RM} ${OBJECTDIR}/main_3c.o 
+	@${FIXDEPS} "${OBJECTDIR}/main_3c.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/main_3c.o.d" -o ${OBJECTDIR}/main_3c.o main_3c.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD) 
+	
+${OBJECTDIR}/main_3a.o: main_3a.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/main_3a.o.d 
+	@${RM} ${OBJECTDIR}/main_3a.o 
+	@${FIXDEPS} "${OBJECTDIR}/main_3a.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/main_3a.o.d" -o ${OBJECTDIR}/main_3a.o main_3a.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD) 
+	
+${OBJECTDIR}/main_3b.o: main_3b.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/main_3b.o.d 
+	@${RM} ${OBJECTDIR}/main_3b.o 
+	@${FIXDEPS} "${OBJECTDIR}/main_3b.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/main_3b.o.d" -o ${OBJECTDIR}/main_3b.o main_3b.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD) 
 	
 else
-${OBJECTDIR}/main_3.o: main_3.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/main_3c.o: main_3c.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/main_3.o.d 
-	@${RM} ${OBJECTDIR}/main_3.o 
-	@${FIXDEPS} "${OBJECTDIR}/main_3.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/main_3.o.d" -o ${OBJECTDIR}/main_3.o main_3.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD) 
+	@${RM} ${OBJECTDIR}/main_3c.o.d 
+	@${RM} ${OBJECTDIR}/main_3c.o 
+	@${FIXDEPS} "${OBJECTDIR}/main_3c.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/main_3c.o.d" -o ${OBJECTDIR}/main_3c.o main_3c.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD) 
+	
+${OBJECTDIR}/main_3a.o: main_3a.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/main_3a.o.d 
+	@${RM} ${OBJECTDIR}/main_3a.o 
+	@${FIXDEPS} "${OBJECTDIR}/main_3a.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/main_3a.o.d" -o ${OBJECTDIR}/main_3a.o main_3a.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD) 
+	
+${OBJECTDIR}/main_3b.o: main_3b.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/main_3b.o.d 
+	@${RM} ${OBJECTDIR}/main_3b.o 
+	@${FIXDEPS} "${OBJECTDIR}/main_3b.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/main_3b.o.d" -o ${OBJECTDIR}/main_3b.o main_3b.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD) 
 	
 endif
 

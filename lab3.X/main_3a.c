@@ -1,9 +1,4 @@
-/* 
- * File:   key_xy.c
- * Author: MenachemE
- *
- * Created on July 25, 2019, 4:08 PM
- */
+/*
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -28,30 +23,20 @@ void initLCD(void);
 void busyLCD(void);
 void sendControlLCD(char control[], int length);
 void setLCD(char top_line[], char bottom_line[]);
+void init_speaker(void);
+void busy_wait(int units);
+void beep();
+void init_keyboard();
 
 void main(void)
 {
     static int i;
-    TRISA&=0xff00;//led
-    TRISCbits.TRISC2=0;//RC2
-    TRISCbits.TRISC1=0;//RC1
-    TRISCbits.TRISC4=0;//RC4            
-    TRISGbits.TRISG6=0;//RG6
-    ANSELGbits.ANSG6=0;//???????
-    TRISCbits.TRISC3 =1;//RC3
-    CNPUCbits.CNPUC3;               
-    TRISGbits.TRISG7=1;//RG7
-    ANSELGbits.ANSG7=0;
-    CNPUGbits.CNPUG7;                  
-    TRISGbits.TRISG8=1;//RG8
-    ANSELGbits.ANSG8=0;//???????
-    CNPUGbits.CNPUG8;//?????
-    TRISGbits.TRISG9=1;//RG9
-    ANSELGbits.ANSG9=0;//???????
-    CNPUGbits.CNPUG9;//????? 
+    TRISA&=0xff00;//led turn off
 
-    
+    init_keyboard();
+    init_speaker();
     initLCD();
+    PORTA = 0x00;
     char control[]={0x38,0x38,0x38,0xe,0x6,0x1};
     char msg[16];
     sendControlLCD(control, 6);
@@ -62,11 +47,13 @@ void main(void)
         int pressed = scan_key();
         
         if(pressed == 0xff)
-            continue;
+            continue; // user didn't press anything
                 
-        sprintf(msg, "    Mode %c          ", pressed);
-        setLCD("                   ", msg);
-        busyLCD();
+        sprintf(msg, "     Mode %c          ", pressed);
+        setLCD("                    ", msg);
+        beep();
+        
+        
         //PORTC=0; - IDK
         PORTCbits.RC2=0;
         PORTCbits.RC1=0;
@@ -133,31 +120,27 @@ int scan_key()
 
 int in_y( int a)
 { 
-    int j=1,flag=0;
+    int j=0;
     if(!PORTCbits.RC3)
     { 
-        flag=1;
         j=1;
     }
    else if (!PORTGbits.RG7)
    { 
-       flag=1;
         j=2;
    }
    else  if(!PORTGbits.RG8)
     { 
-       flag=1;
         j=3;
     }
    else if(!PORTGbits.RG9)
     { 
-       flag=1; 
         j=4;
     }
-    if(flag==0)
+    if(j==0) //No press detected
         return(0xff);
     else
-       return(j|(a<<4));
+       return(j|(a<<4)); //Formatting a press by x(a) and y(j)
 
 }
 
@@ -249,3 +232,49 @@ void sendControlLCD(char control[], int length)
     PORTBbits.RB15=old_RD15;
     PORTDbits.RD5= old_RD5;
 }
+
+void init_speaker()
+{
+    TRISBbits.TRISB14 = 0; //Setting speaker as an output
+    ANSELBbits.ANSB14 = 0; // prevent analog (this is a digital output : 0/1)
+}
+
+void beep(){
+    //switching sound on & off fast to make the beep
+    int i;
+    for(i=0;i<500;i++){
+        PORTBbits.RB14 = 1;
+        busy_wait(400);
+        PORTBbits.RB14 = 0;
+        busy_wait(400);
+    }
+}
+
+
+void init_keyboard()
+{
+    TRISCbits.TRISC2=0;//RC2
+    TRISCbits.TRISC1=0;//RC1
+    TRISCbits.TRISC4=0;//RC4            
+    TRISGbits.TRISG6=0;//RG6
+    ANSELGbits.ANSG6=0;//???????
+    TRISCbits.TRISC3 =1;//RC3
+    CNPUCbits.CNPUC3;               
+    TRISGbits.TRISG7=1;//RG7
+    ANSELGbits.ANSG7=0;
+    CNPUGbits.CNPUG7;                  
+    TRISGbits.TRISG8=1;//RG8
+    ANSELGbits.ANSG8=0;//???????
+    CNPUGbits.CNPUG8;//?????
+    TRISGbits.TRISG9=1;//RG9
+    ANSELGbits.ANSG9=0;//???????
+    CNPUGbits.CNPUG9;//????? 
+}
+
+void busy_wait(int units)
+{
+    int i;
+    for(i=0;i<units;i++);
+}
+  
+  */
