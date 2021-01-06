@@ -36,7 +36,7 @@ void beep();
 void init_keyboard();
 void shift_left(int by);
 void symmetric_shift(int by);
-int scan_key(int units);
+int scan_key();
 void timer_delay(void);
 
 const int SHORT_DELAY = pow(2,16);
@@ -71,7 +71,7 @@ void main(void)
     while(finish!=1)
     {
         busy_wait(delay); 
-        pressed = scan_key(10000);
+        pressed = scan_key();
         
         if(pressed != 0xff){
             old_pressed = last_pressed;
@@ -268,7 +268,7 @@ void timer_delay()
     T4CONbits.TCKPS2 = 1; 
     T4CONbits.TGATE = 0;                //             not gated input (the default)
     T4CONbits.TCS = 0;                  //             PCBLK input (the default)
-    T4CONbits.ON = 1;                   //             turn on Timer1
+    T4CONbits.ON = 1;                   //             turn on Timer4
     IPC4bits.T4IP = 2;                  //             priority
     IPC4bits.T4IS = 0;                  //             subpriority
     IFS0bits.T4IF = 0;     
@@ -285,7 +285,7 @@ int scan_key()
     int xy;
     
     timer_delay();
-    while(!IFS0bits.T4IF)//timer iteration
+    while(!IFS0bits.T4IF)// Waiting for timer 4
     {
         // A single scan for xy press keyboard location
         PORTCbits.RC2=1;
@@ -324,11 +324,6 @@ int scan_key()
     return(0xff);
 }
 
-void increase(int count)
-{
-    PORTA+=count;
-}
-
 int in_y( int a)
 { 
     int j=0;
@@ -353,6 +348,13 @@ int in_y( int a)
     else
        return(j|(a<<4)); //Formatting a press by x(a) and y(j)
 
+}
+
+
+
+void increase(int count)
+{
+    PORTA+=count;
 }
 
 
@@ -400,6 +402,9 @@ void initLCD(void){
     ANSELEbits.ANSE7 = 0;
     PORTBbits.RB15 = 0; //rs=0
     PORTDbits.RD5 = 0; //w=0
+    
+    char control[]={0x38,0x38,0x38,0xe,0x6,0x1};
+    sendControlLCD(control, 6);
 }
 
 void busyLCD(void) {
