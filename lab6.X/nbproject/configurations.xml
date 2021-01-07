@@ -12,12 +12,6 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
-      <itemPath>config.h</itemPath>
-      <itemPath>ssd.c</itemPath>
-      <itemPath>ssd.h</itemPath>
-      <itemPath>main_5.c</itemPath>
-      <itemPath>../../../../../main_6.c</itemPath>
-      <itemPath>../../../../../main6_ADC.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -25,10 +19,6 @@
       <itemPath>Makefile</itemPath>
     </logicalFolder>
   </logicalFolder>
-  <sourceRootList>
-    <Elem>D:/</Elem>
-    <Elem>.</Elem>
-  </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
     <conf name="default" type="2">
@@ -69,10 +59,6 @@
         <makeCustomizationEnableLongLines>false</makeCustomizationEnableLongLines>
         <makeCustomizationNormalizeHexFile>false</makeCustomizationNormalizeHexFile>
       </makeCustomizationType>
-      <item path="../../../../../main6_ADC.c" ex="true" overriding="false">
-      </item>
-      <item path="../../../../../main_6.c" ex="true" overriding="false">
-      </item>
       <C32>
         <property key="additional-warnings" value="false"/>
         <property key="addresss-attribute-use" value="false"/>
@@ -202,9 +188,6 @@
         <property key="save-temps" value="false"/>
         <property key="wpo-lto" value="false"/>
       </C32Global>
-      <PK3OBPlatformTool>
-        <property key="firmware.download.all" value="false"/>
-      </PK3OBPlatformTool>
     </conf>
   </confs>
 </configurationDescriptor>

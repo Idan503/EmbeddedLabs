@@ -1,10 +1,11 @@
+
 #include <xc.h>
 #include <string.h>
 #include <sys/attribs.h>
 #include "ssd.h"
-#pragma config JTAGEN = OFF     
-#pragma config FWDTEN = OFF
-#pragma config FNOSC =FRCPLL
+#pragma config JTAGEN =     OFF     
+#pragma config FWDTEN =     OFF
+#pragma config FNOSC =      FRCPLL
 #pragma config FSOSCEN =	OFF
 #pragma config POSCMOD =	EC
 #pragma config OSCIOFNC =	ON
@@ -31,6 +32,7 @@ int m_clock_time;
 
 int m_digits[4];
 int current_selection = 0; // 0 leftmost, 3 rightmost
+
 
 
 void main()
@@ -83,6 +85,8 @@ void main()
     }
 
 }
+
+
 
 
 void start_clock()

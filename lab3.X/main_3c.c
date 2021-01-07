@@ -32,11 +32,12 @@ void sendControlLCD(char control[], int length);
 void setLCD(char top_line[], char bottom_line[]);
 void init_speaker(void);
 void busy_wait(int units);
-void beep();
 void init_keyboard();
+void beep();
+int scan_key();
 void shift_left(int by);
 void symmetric_shift(int by);
-int scan_key();
+
 void timer_delay(void);
 
 const int SHORT_DELAY = pow(2,16);
